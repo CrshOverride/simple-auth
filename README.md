@@ -1,6 +1,6 @@
-# Uncharted-simple-auth
+# UnchartedCode simple-auth
 
-This README outlines the details of collaborating on this Ember addon.
+All the things to get session handling with a rails backend working with simple-auth
 
 ## Installation
 
