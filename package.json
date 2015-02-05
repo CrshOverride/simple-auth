@@ -1,7 +1,7 @@
 {
-  "name": "uncharted-simple-auth",
+  "name": "ember-cli-uncharted-simple-auth",
   "version": "0.0.1",
-  "description": "The default blueprint for ember-cli addons.",
+  "description": "All the things to get session handling with a rails backend working with simple-auth",
   "directories": {
     "doc": "doc",
     "test": "tests"
