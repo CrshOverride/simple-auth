@@ -1,6 +1,6 @@
 {
   "name": "ember-cli-uncharted-simple-auth",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "All the things to get session handling with a rails backend working with simple-auth",
   "directories": {
     "doc": "doc",
