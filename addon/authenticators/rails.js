@@ -1,15 +1,15 @@
 import Devise from 'simple-auth-devise/authenticators/devise';
-import UnchartedAjax from 'uncharted-ajax';
+import unchartedAjax from 'uncharted-ajax';
 
 var Authenticator = Devise.extend({
   restore: function(/* properties */) {
-    return UnchartedAjax({
+    return unchartedAjax({
       url: '/session/me'
     });
   },
 
   invalidate: function() {
-    return UnchartedAjax({
+    return unchartedAjax({
       url: '/users/sign_out'
     });
   }

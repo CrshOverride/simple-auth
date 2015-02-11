@@ -1,9 +1,8 @@
 import Ember from 'ember';
 
 var restore = function(session, current_user, store) {
-  return new Ember.RSVP.Promise(function(resolve, reject) {
+  return new Ember.RSVP.Promise(function(resolve/*, reject*/) {
     var user_id;
-    var _this = this;
 
     if (session.get('user_id') == null) {
       resolve();
@@ -15,7 +14,7 @@ var restore = function(session, current_user, store) {
     store.find('user', user_id).then(function(user) {
       current_user.set('content', user);
       resolve(user);
-    })["catch"](function(error) {
+    })["catch"](function(/* error */) {
       resolve();
     });
   });
@@ -36,24 +35,20 @@ export default Ember.Mixin.create({
     sessionInvalidationSucceeded: function() {
       this.get('current_user').set('content', null);
       this.transitionTo('user.login');
-
-      this._super();
     },
 
     sessionInvalidationFailed: function(error) {
-      Raven.captureException(error, {
-        extra: context
-      });
-
+      this.trigger('reportError', error);
       this._super(error);
     },
 
     sessionAuthenticationSucceeded: function() {
       this._super();
 
-      var _this = this;
       return restore(this.get('session'), this.get('current_user'), this.store).then(function() {
-        _this.transitionTo('index');
+        if (!Ember.testing) {
+          window.location.replace("/");
+        }
       });
     }
   }
