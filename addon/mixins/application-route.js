@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import SimpleAuthConfiguration from 'simple-auth/configuration';
 
 var restore = function(session, current_user, store) {
   return new Ember.RSVP.Promise(function(resolve/*, reject*/) {
@@ -34,7 +35,7 @@ export default Ember.Mixin.create({
   actions: {
     sessionInvalidationSucceeded: function() {
       this.get('current_user').set('content', null);
-      this.transitionTo('user.login');
+      this.transitionTo(SimpleAuthConfiguration.authenticationRoute);
     },
 
     sessionInvalidationFailed: function(error) {
