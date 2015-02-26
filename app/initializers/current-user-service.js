@@ -1,5 +1,5 @@
 export function initialize(container, application) {
-  Ember.A(['controller', 'view', 'route']).forEach(function(component) {
+  Ember.A(['controller', 'view', 'route', 'component']).forEach(function(component) {
     container.injection(component, 'current_user', 'service:current-user');
   })
 }
