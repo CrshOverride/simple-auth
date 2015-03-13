@@ -25,8 +25,8 @@ export default Ember.Mixin.create({
   beforeModel: function(transition) {
     this._super(transition);
 
-    if (this.get('csrf') && this.get('csrf').fetchToken) {
-      this.get('csrf').fetchToken(this.get('session.authenticity_token'));
+    if (this.get('csrf') && this.get('csrf').fetch) {
+      this.get('csrf').fetch(this.get('session.authenticity_token'));
     }
 
     return restore(this.get('session'), this.get('current_user'), this.store);
