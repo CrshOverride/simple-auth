@@ -14,13 +14,11 @@ export default Ember.Object.extend({
     Ember.$(document).on('ajaxComplete', function(event, xhr, settings) {
       var param = xhr.getResponseHeader("X-CSRF-Param");
       if (param) {
-        console.log("Setting CSRF param: " + param);
         data.key = param;
       }
 
       var token = xhr.getResponseHeader("X-CSRF-Token");
       if (token) {
-        console.log(settings.url + ": setting csrf token " + token);
         object.update(token);
       }
     });
@@ -28,10 +26,7 @@ export default Ember.Object.extend({
     var filter = function(options, originalOptions, xhr) {
       var token = object.token();
       if (token) {
-        console.log(options.url + ": sending csrf " + token);
         xhr.setRequestHeader("X-CSRF-Token", token);
-      } else {
-        console.log(options.url + ": skipping csrf");
       }
     };
 
