@@ -4,13 +4,15 @@ import unchartedAjax from 'uncharted-ajax';
 var Authenticator = Devise.extend({
   restore: function(/* properties */) {
     return unchartedAjax({
-      url: '/session/me'
+      url: '/session/me',
+      cache: false
     });
   },
 
   invalidate: function() {
     return unchartedAjax({
-      url: '/users/sign_out'
+      url: '/users/sign_out',
+      cache: false
     });
   }
 });
